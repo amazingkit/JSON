@@ -1,46 +1,19 @@
-$.getJSON('http://api.open-notify.org/astros.json?callback=?', function(data) {
+document.addEventListener('DOMContentLoaded', function() {
+    fetch('https://api.open-notify.org/astros.json')
+    .then(response => response.json())
+    .then(data => {
     var number = data['number'];
-    $('#SpacePeople').html(number);
+    document.getElementById('SpacePeople').textContent = number;
 
     data['people'].forEach(function (d) {
-        $('#astroNames').append('<li class="astronaut"><p><strong>Name:</strong> ' + d['name'] + '</p><p><strong>Craft:</strong> ' + d['craft'] + '</p></li>');
+    var astronautInfo = '<li class="astronaut"><p><strong>Name:</strong> ' + d['name'] + '</p><p><strong>Craft:</strong> ' + d['craft'] + '</p></li>';
+    document.getElementById('astroNames').innerHTML += astronautInfo;
     });
-});
+    })
+    .catch(error => console.error('Error fetching data:', error));
+    });
 
 
 
 
-"message": "success",
-"people": 
-    [
-    {
-     "name": "Jasmin Moghbeli",
-     "craft": "ISS"
-     },
-    {
-    "name": "Andreas Mogensen",
-    "craft": "ISS"
-    },
-    {
-    "name": "Satoshi Furukawa",
-    "craft": "ISS"
-    },
-    {
-    "name": "Konstantin Borisov",
-    "craft": "ISS"
-    },
-    {
-    "name": "Oleg Kononenko",
-    "craft": "ISS"
-    },
-    {
-    "name": "Nikolai Chub",
-    "craft": "ISS"
-    },
-    {
-    "name": "Loral O'Hara",
-    "craft": "ISS"
-    }
-    ],
-"number": 7
-}
+
