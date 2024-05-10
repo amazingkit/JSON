@@ -1,17 +1,11 @@
-document.addEventListener('DOMContentLoaded', function() {
-    fetch('https://api.open-notify.org/astros.json')
-    .then(response => response.json())
-    .then(data => {
+$.getJSON('http://api.open-notify.org/astros.json?callback=?', function(data) {
     var number = data['number'];
-    document.getElementById('SpacePeople').textContent = number;
+    $('#SpacePeople').html(number);
 
     data['people'].forEach(function (d) {
-    var astronautInfo = '<li class="astronaut"><p><strong>Name:</strong> ' + d['name'] + '</p><p><strong>Craft:</strong> ' + d['craft'] + '</p></li>';
-    document.getElementById('astroNames').innerHTML += astronautInfo;
+        $('#astroNames').append('<li class="astronaut"><p><strong>Name:</strong> ' + d['name'] + '</p><p><strong>Craft:</strong> ' + d['craft'] + '</p></li>');
     });
-    })
-    .catch(error => console.error('Error fetching data:', error));
-    });
+});
 
 
 
