@@ -1,4 +1,4 @@
-$.getJSON('http://api.open-notify.org/astros.json?callback=?', function(data) {
+$.getJSON('https://raw.githubusercontent.com/unnamedActant/Example_JSON/main/astros.json', function(data) {
     var number = data['number'];
     $('#SpacePeople').html(number);
 
